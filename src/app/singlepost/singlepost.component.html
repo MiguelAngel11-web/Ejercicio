@@ -1,0 +1,75 @@
+<!-- <div >
+
+      <div class="card h-100 shadow p-3 mb-5 rounded">
+
+
+          <div class="card-body">
+              <h5 class="card-title fw-bold">{{p.title}}</h5>
+              <p class="card-text">{{p.body}}</p>
+
+              <a [routerLink]="['/singlepost',p.id]" class="btn btn-outline-primary btn-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver comentarios" routerLinkActive="active"><i class="far fa-comments fa-lg"></i> Ver más</a>
+          </div>
+          <div class="card-footer">
+              <div *ngFor="let u of userName">
+                  <div *ngIf="u.id == p.userId">
+                      <p class="card-text"><small class="text-muted">Author: {{u.username}}</small></p>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+ -->
+
+
+
+
+<div class=" row justify-content-md-center align-middle">
+    <div class="col  col-lg-6">
+
+        <div class="card h-100 text-center mb-3 rounded shadow">
+            <div class="card-header fw-bold">
+                {{post.title}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Post id: {{post.id}}</h5>
+                <p class="card-text">{{post.body}}</p>
+                <a [routerLink]="['/posts']" class="btn btn-outline-danger btn-block"><i class="fas fa-chevron-circle-left"></i> Regresar</a>
+            </div>
+            <div class="card-footer text-muted">
+                Author id: {{post.userId}}
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div class="row justify-content-md-center align-middle pt-5 pb-3">
+    <div class="col col-lg-8">
+
+        <div class="card h-100 border-info mb-3 ">
+            <h3 class="text-center py-3"><i class="far fa-comment"></i> Comentarios</h3>
+            <div *ngIf=" noComments == true else Marvel">
+                <!--Uso del *ngIf para saber que logo procede-->
+                <h4>No hay comentarios todavia <i class="far fa-frown"></i></h4>
+                <!--DC-->
+            </div>
+            <ng-template #Marvel>
+
+                <div class="card mb-3" *ngFor="let c of comment">
+                    <div class="row g-0">
+                        <div class="card-header fw-bold text-center"><i class="fas fa-user-astronaut fa-3x"></i> {{c.email}}</div>
+                        <div class="card-body bg-secondary bg-gradient text-white">
+                            <h5 class="card-title">{{c.name}}</h5>
+                            <p class="card-text">{{c.body}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>

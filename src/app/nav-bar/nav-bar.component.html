@@ -1,0 +1,23 @@
+<header class="header ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light position-absolute top-0 start-50 translate-middle-x">
+        <a class="navbar-brand" href="#">Posts and Users</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+        <div class="collapse navbar-collapse align-middle" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['posts']">Posts </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['users']"><i class="fas fa-user-circle"></i> Login</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['perfil',true]"><i class="fas fa-cog"></i> Perfil</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- <img class="h-auto w-100 " src="https://smmagencepro.com/wp-content/uploads/2020/02/How-blogs-changed-the-world-1024x585.jpg"> -->

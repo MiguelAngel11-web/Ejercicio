@@ -1,0 +1,113 @@
+<!-- <table class="table table-hover" style="color: white;">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Publicasiones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of allUsers">
+            <th scope="row">{{u.name}}</th>
+            <td>{{u.email}}</td>
+            <td>{{u.address.street}} {{u.address.suite}} {{u.address.city}} {{u.address.zipcode}}{{u.address.geo.lat}} {{u.address.geo.lng}}</td>
+            <div *ngFor="let p of posts">
+                <div *ngIf=" p.userId == u.id">
+                    <td>
+                        {{p.title}}
+                    </td>
+                </div>
+            </div> -->
+<!--  <div *ngIf=" posts.userId == u.id">
+            <td></td>
+          </div> -->
+<!--         </tr>
+    </tbody>
+</table> -->
+<ng-container *ngIf="mostrarInfo == false else info">
+    <h1 class="text-center fw-bold"> Acceder </h1>
+    <div class="row justify-content-md-center align-middle">
+        <div class="col  col-lg-4">
+            <div class="card h-auto shadow p-3 mb-5 rounded ">
+                <form class="responsive" [formGroup]="forma" novalidate (ngSubmit)="onSubmit()">
+                    <div class="card-body">
+
+                        <div class="form-floating form-group has-success mb-3 col-md-12">
+                            <input type="email" class="form-control" id="floatingInput" [class.is-invalid]="EmailIsInvalid" [class.is-valid]=" EmailIsValid" formControlName="email" placeholder="name@example.com">
+                            <label for="floatingInput"><i class="far fa-envelope fa-sm"></i> Email address</label>
+
+                            <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+                                <p *ngIf="email.errors.required">
+                                    Email es requerido
+                                </p>
+                                <p *ngIf="email.errors.email">
+                                    Digite una direccion de correo valida
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-floating form-group has-success col-md-12">
+                            <input type="password" class="form-control" id="floatingPassword" [class.is-invalid]="PassIsInvalid" [class.is-valid]="PassIsValid" formControlName="password" placeholder="Password">
+                            <label for="floatingPassword"><i class="fas fa-lock fa-sm"></i> Password</label>
+
+                            <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+                                <p *ngIf="password.errors.required">
+                                    Contraseña es requerida
+                                </p>
+                                <p *ngIf="password.errors.minlength">
+                                    Contraseña tiene que tener más de cinco carácteres
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center p-3">
+                        <button class="btn btn-outline-dark" type="submit" (click)="entrar()">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</ng-container>
+
+<ng-template #info>
+
+
+
+    <div class=" row justify-content-md-center align-middle">
+        <div class="col  col-lg-6">
+            <div *ngFor="let u of allUsers; index as i">
+                <ng-container *ngIf="i==4">
+                    <div class="card h-100 text-center mb-3 rounded shadow">
+                        <div class="card-header fw-bold">
+                            Nombre: {{u.name}}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Correo electrónico: {{u.email}}</h5>
+                            <p class="card-text">Dirección: {{u.address.street}} {{u.address.suite}} {{u.address.city}} {{u.address.zipcode}}{{u.address.geo.lat}} {{u.address.geo.lng}}</p>
+                            <a [routerLink]="['/posts']" class="btn btn-outline-danger btn-block"><i class="fas fa-chevron-circle-left"></i> Regresar</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <ul class="list-group list-group-flush">
+                                <h2 class="fw-blod text-center">Publicaciones</h2>
+                                <div *ngFor="let p of posts">
+
+                                    <div *ngIf=" p.userId == u.id">
+
+                                        <li class="list-group-item">
+                                            <a [routerLink]="['/singlepost',p.id]" class="btn btn-outline-success btn-block"> <i class="fas fa-external-link-alt"></i>{{p.title}}</a>
+                                        </li>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

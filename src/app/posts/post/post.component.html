@@ -1,0 +1,30 @@
+<header [ngStyle]="{'background-url':getImage()  }"></header>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col " *ngFor="let p of post | paginate: { itemsPerPage: 6, currentPage: cPage }">
+        <div class="card h-100 shadow p-3 mb-5 rounded">
+
+
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{p.title}}</h5>
+                <p class="card-text">{{p.body}}</p>
+
+                <a [routerLink]="['/singlepost',p.id]" class="btn btn-outline-primary btn-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver comentarios" routerLinkActive="active"><i class="far fa-comments fa-lg"></i> Ver más</a>
+            </div>
+            <div class="card-footer">
+                <div *ngFor="let u of userName">
+                    <div *ngIf="u.id == p.userId">
+                        <p class="card-text"><small class="text-muted">Author: {{u.username}}</small></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <pagination-controls class="my-pagination" (pageChange)="cPage = $event" maxSize="5" directionLinks="true" autoHide="true" responsive="true" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+        screenReaderCurrentLabel="Estas en esta página">
+    </pagination-controls>
+
+</div>
